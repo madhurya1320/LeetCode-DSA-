@@ -5,7 +5,7 @@ public:
         vector<int>ans;
 
         for(int i = 0; i<2*n; i++) {
-            ans.push_back(nums[i % nums.size()]); // time: O(n); Space: O(1);
+            ans.push_back(nums[i % nums.size()]);
         }
         return ans;
     }
