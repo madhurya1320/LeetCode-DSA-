@@ -6,7 +6,7 @@ public:
         pSums[0] = 1;
 
         for (int num : nums) {
-            cur += num;
+            cur = cur + num;
             int diff = cur - k;
             res = res +  pSums[diff];
             pSums[cur]++;
