@@ -1,23 +1,20 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> res;
-        vector<int> arr;                 // passed by value into helper
-        helper(nums, 0, arr, res);
+        vector<vector<int>>res;
+        vector<int>arr;
+        helper(0,nums, res, arr);
         return res;
     }
 
-    void helper(vector<int>& nums, int ind, vector<int> arr, vector<vector<int>>& res) {
-        if (ind == nums.size()) {
+    void helper(int i, vector<int>&nums, vector<vector<int>>&res, vector<int>&arr) {
+        if(i == nums.size()) {
             res.push_back(arr);
             return;
         }
-
-        // 1) Exclude nums[ind] (arr is unchanged)
-        helper(nums, ind + 1, arr, res);
-
-        // 2) Include nums[ind] (arr is a copy here)
-        arr.push_back(nums[ind]);
-        helper(nums, ind + 1, arr, res);
+        arr.push_back(nums[i]);
+        helper(i+1, nums, res, arr);
+        arr.pop_back();
+        helper(i+1, nums, res, arr);
     }
 };
