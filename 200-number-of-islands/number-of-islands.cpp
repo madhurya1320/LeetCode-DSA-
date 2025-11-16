@@ -19,10 +19,10 @@ public:
         }
         grid[ro][cl] = '0';
         for(int i = 0; i<4; i++) {
-            //int nr = ro + directions[i][0];
-            //int nc = cl + directions[i][1];
+            int nr = ro + directions[i][0];
+            int nc = cl + directions[i][1];
 
-            dfs(grid, ro + directions[i][0], cl + directions[i][1]);
+            dfs(grid, nr, nc);
         }
     }
 };
