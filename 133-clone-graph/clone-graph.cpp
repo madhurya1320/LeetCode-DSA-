@@ -22,8 +22,8 @@ public:
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        unordered_map<Node*, Node*>mp;
-        return dfs(node, mp);
+        unordered_map<Node*, Node*> oldToNew;
+        return dfs(node, oldToNew);
     }
 
     Node* dfs(Node* node, unordered_map<Node*, Node*>& oldToNew) {
