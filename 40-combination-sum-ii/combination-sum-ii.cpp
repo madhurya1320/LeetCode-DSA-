@@ -8,18 +8,18 @@ public:
         return res;
     }
 
-    void helper(int ind, vector<int>&nums, vector<vector<int>>&res, vector<int>&arr, int target) {
+    void helper(int i, vector<int>&nums, vector<vector<int>>&res, vector<int>&arr, int target) {
         if(target == 0) {
         res.push_back(arr);
         return;
     }
-        for(int i = ind; i<nums.size(); i++) {
-            if(i>ind && nums[i] == nums[i-1]) continue;
+        for(int j = i; j<nums.size(); j++) {
+            if(j>i && nums[j] == nums[j-1]) continue;
 
-            if(nums[i]>target) break;
+            if(nums[j]>target) break;
 
-            arr.push_back(nums[i]);
-            helper(i+1, nums, res, arr, target - nums[i]);
+            arr.push_back(nums[j]);
+            helper(j+1, nums, res, arr, target - nums[j]);
             arr.pop_back();
         }
 
