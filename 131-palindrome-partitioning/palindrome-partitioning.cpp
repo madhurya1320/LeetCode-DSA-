@@ -2,33 +2,36 @@ class Solution {
 public:
     vector<vector<string>> partition(string s) {
         vector<vector<string>>res;
-        vector<string>arr;
-        helper(s, res, arr, 0);
+        vector<string>ans;
+        helper(0, s, ans, res);
         return res;
     }
 
-    void helper(string s,vector<vector<string>>&res,vector<string>&arr, int i ) {
+    void helper(int i, string s, vector<string>&ans, vector<vector<string>>&res) {
         if(i == s.size()) {
-            res.push_back(arr);
+            res.push_back(ans);
             return;
         }
+
         for(int j = i; j<s.size(); j++) {
-            if(ispalin(s, i, j)) {
-                arr.push_back(s.substr(i, j-i+1));
-                helper(s, res, arr, j+1);
-                arr.pop_back();
+            if(ispalindrome(s, i, j)) {
+                ans.push_back(s.substr(i, j-i+1));
+                helper(j+1, s, ans, res);
+                ans.pop_back();
             }
         }
+
+        
     }
 
-    bool ispalin(string s, int i, int j) {
-        while(i<=j) {
-            if(s[i] != s[j]) {
+    bool ispalindrome(string s, int i, int j) {
+            while(i<=j) {
+            if(s[i]!=s[j]) {
                 return false;
             }
-            i++;
-            j--;
+                i++;
+                j--;
+            }
+            return true;
         }
-        return true;
-    }
 };
