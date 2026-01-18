@@ -12,14 +12,24 @@
 class Solution {
 public:
     int goodNodes(TreeNode* root) {
-        return dfs(root, root->val);
+        int count = 0;
+        int max_val = INT_MIN;
+
+        helper(root, count, max_val);
+        return count;
     }
 
-    int dfs(TreeNode* root, int maxi) {
-        if(root == NULL) return 0;
+    void helper(TreeNode* root, int &count, int max_val) {
+        if(root == NULL) {
+            return;
+        }
 
-        int res = (root->val >=maxi) ? 1 : 0;
-        maxi = max(root->val, maxi);
-        return res + dfs(root->left, maxi) + dfs(root->right, maxi);
+        if(root->val >= max_val) {
+            max_val = root->val;
+            count++; 
+        }
+
+        helper(root->left, count, max_val);
+        helper(root->right, count, max_val);
     }
 };
